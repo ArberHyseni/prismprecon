@@ -1,0 +1,10 @@
+# Runs in cPanel -> Git Version Control -> "Deploy HEAD Commit" on the `deploy` branch.
+# APPDIR must match the "Application root" in cPanel -> Setup Node.js App.
+---
+deployment:
+  tasks:
+    - export APPDIR=$HOME/prismprecon_app
+    - /bin/mkdir -p $APPDIR/tmp
+    - /bin/rm -rf $APPDIR/public
+    - /bin/cp -R app.js app.js.map package.json public $APPDIR/
+    - /bin/touch $APPDIR/tmp/restart.txt
