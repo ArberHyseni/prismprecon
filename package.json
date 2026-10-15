@@ -1,0 +1,21 @@
+{
+  "name": "prismprecon",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "concurrently -n server,client -c gray,blue \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client && npm run build -w server",
+    "typecheck": "npm run typecheck -w client && npm run typecheck -w server",
+    "release": "npm run build && node scripts/assemble-release.mjs",
+    "start": "node release/app.js"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}
